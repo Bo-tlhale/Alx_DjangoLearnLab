@@ -18,6 +18,7 @@ def is_librarian(user):
 
 def is_member(user):
     return hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
+
 @user_passes_test(is_admin)
 @login_required
 def admin_view(request):
