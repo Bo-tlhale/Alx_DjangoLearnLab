@@ -11,9 +11,12 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return self.title
+    
 class Library(models.Model):
     name = models.CharField(max_length=100)
-    books = models.ManyToManyField(Book, on_delete=models.PROTECT)
+    books = models.ManyToManyField(Book)
     
     def __str__(self):
         return self.name
