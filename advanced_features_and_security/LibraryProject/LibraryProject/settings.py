@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-&8!6a=8u^l49@x3v!1=sz2br6i+=$&u6%3eyg-xnby(5w5hgtt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "csp.middleware.CSPMiddleware"
 ]
 
 ROOT_URLCONF = "LibraryProject.urls"
@@ -130,3 +131,23 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 #Points to custom user model
 AUTH_USER_MODEL = "bookshelf.CustomUser"
+
+#Security Features
+#Prevents XSS attacks
+SECURE_BROWSER_XSS_FILTER = True
+#Prevents clickjacking
+X_FRAME_OPTIONS = "DENY"
+#Prevents from MIME-type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+#Enforce cookies being sent over HTTPS only
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+#CSP
+CSP_DEFAULT_SRC = ("'self'",)  
+CSP_SCRIPT_SRC = ("'self'",)  
+CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")
+CSP_FONT_SRC = ("'self'", "https://fonts.gstatic.com")
+CSP_IMG_SRC = ("'self'", "data:")
+CSP_CONNECT_SRC = ("'self'",)

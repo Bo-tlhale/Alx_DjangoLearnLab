@@ -23,4 +23,4 @@ def delete_book():
 def book_list(request):
     books = Book.objects.all()
     context = {'list_of_books': books}
-    return render(request, '/book_list.html', context)
+    return render(request, 'bookshelf/book_list.html', context)
