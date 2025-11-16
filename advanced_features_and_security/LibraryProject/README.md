@@ -7,3 +7,4 @@ My first Django Web App
 
 --Security
 #Included both middleware, and features to help with security
+#More security features
